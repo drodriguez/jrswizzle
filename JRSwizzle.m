@@ -22,13 +22,13 @@
 #if OBJC_API_VERSION >= 2
 	Method origMethod = class_getInstanceMethod(self, origSel_);
 	if (!origMethod) {
-		SetNSError(error_, @"original method %@ not found for class %@", NSStringFromSelector(origSel_), [NSString stringWithCString:class_getName([self class])]);
+		SetNSError(error_, @"original method %@ not found for class %@", NSStringFromSelector(origSel_), [NSString stringWithUTF8String:class_getName([self class])]);
 		return NO;
 	}
 	
 	Method altMethod = class_getInstanceMethod(self, altSel_);
 	if (!altMethod) {
-		SetNSError(error_, @"alternate method %@ not found for class %@", NSStringFromSelector(altSel_), [NSString stringWithCString:class_getName([self class])]);
+		SetNSError(error_, @"alternate method %@ not found for class %@", NSStringFromSelector(altSel_), [NSString stringWithUTF8String:class_getName([self class])]);
 		return NO;
 	}
 	
